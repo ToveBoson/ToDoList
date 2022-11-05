@@ -1,20 +1,31 @@
+// KLASSER
 class Checklist {
-  constructor(workout, writeEssay, clean, dogwalking, laundry) {
-    this.workout = workout;
-    this.writeEssay = writeEssay;
-    this.clean = clean;
-    this.dogwalking = dogwalking;
-    this.laundry = laundry;
+  constructor(checklistName) {
+    this.checklistName = checklistName;
   }
 }
 
-let firstcheck = new Checklist("workout");
-let secondcheck = new Checklist("writeEssay");
-let thirdcheck = new Checklist("clean");
-let fourthcheck = new Checklist("dogwalking");
-let fifthcheck = new Checklist("laundry");
+const firstcheck = new Checklist("Träna");
+const secondcheck = new Checklist("Skriva uppsats");
+const thirdcheck = new Checklist("Städa");
+const fourthcheck = new Checklist("Gå ut med hunden");
+const fifthcheck = new Checklist("Tvätta");
 
-let todoList = ["workout", "writeEssay", "clean", "dogwalking", "laundry"];
+const todoList = [firstcheck, secondcheck, thirdcheck, fourthcheck, fifthcheck];
 
-let container = document.getElementById("container");
-for (let i = 0; i < todoList.length; i++) {}
+const bigcontainer = document.getElementById("list");
+
+const container = document.createElement("ul");
+container.className = "container";
+
+//LOOP FÖR CHECKLISTA
+for (let i = 0; i < todoList.length; i++) {
+  const listItem = document.createElement("li");
+
+  listItem.className = "list";
+  listItem.innerHTML = todoList[i].checklistName;
+
+  container.appendChild(listItem);
+}
+
+bigcontainer.append(container);
