@@ -5,11 +5,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ToDoList</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"
+    />
     <link rel="stylesheet" href="scss/main.scss" />
     <script defer src="js/main.js"></script>
   </head>
   <body>
-    <h1 class="heading">Att göra</h1>
+    <div class="header">
+      <h1>Att göra</h1>
+      <form class="header__form">
+        <input type="text" id="todoInput" placeholder="Jag ska..." />
+        <button id="todoButton" type="submit">
+          <i class="bi bi-plus-circle"></i>
+        </button>
+      </form>
+    </div>
     <div id="list"></div>
   </body>
 </html>
