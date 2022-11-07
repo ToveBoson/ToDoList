@@ -26,11 +26,8 @@ body {
     padding: 10px 15px;
     border-radius: 40px;
     margin: 5px;
-
-    &__check,
-    &__trash {
-      flex-direction: row;
-    }
+    display: flex;
+    justify-content: space-between;
   }
 }
 .header {

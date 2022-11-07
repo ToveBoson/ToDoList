@@ -21,6 +21,7 @@ container.className = "container";
 //LOOP FÖR CHECKLISTA
 for (let i = 0; i < todoList.length; i++) {
   const listItem = document.createElement("li");
+  const buttonContainer = document.createElement("div");
   const checkButton = document.createElement("button");
   const trashButton = document.createElement("button");
 
@@ -34,8 +35,9 @@ for (let i = 0; i < todoList.length; i++) {
   trashButton.innerHTML = todoList[i].trashButton;
 
   container.appendChild(listItem);
-  listItem.appendChild(checkButton);
-  listItem.appendChild(trashButton);
+  listItem.appendChild(buttonContainer);
+  buttonContainer.appendChild(checkButton);
+  buttonContainer.appendChild(trashButton);
 }
 
 bigcontainer.append(container);
@@ -52,6 +54,7 @@ function addTodo(event) {
 
   for (let i = 0; i < todoList.length; i++) {
     const listItem = document.createElement("li");
+    const buttonContainer = document.createElement("div");
     const checkButton = document.createElement("button");
     const trashButton = document.createElement("button");
 
@@ -65,8 +68,9 @@ function addTodo(event) {
     trashButton.innerHTML = todoList[i].trashButton;
 
     container.appendChild(listItem);
-    container.appendChild(checkButton);
-    container.appendChild(trashButton);
+    listItem.appendChild(buttonContainer);
+    buttonContainer.appendChild(checkButton);
+    buttonContainer.appendChild(trashButton);
 
     event.preventDefault();
   }
