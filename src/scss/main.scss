@@ -28,8 +28,25 @@ body {
     margin: 5px;
     display: flex;
     justify-content: space-between;
+
+    &__trash {
+      color: red;
+      font-size: 1.5em;
+      border: none;
+      background: none;
+      cursor: pointer;
+    }
+
+    &__check {
+      color: green;
+      font-size: 1.5em;
+      border: none;
+      background: none;
+      cursor: pointer;
+    }
   }
 }
+
 .header {
   display: block;
   text-align: center;
