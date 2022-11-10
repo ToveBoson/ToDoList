@@ -6,27 +6,44 @@ class Checklist {
   }
 }
 
-function forLoop() {
+const firstcheck = new Checklist("Träna");
+const secondcheck = new Checklist("Skriva uppsats");
+const thirdcheck = new Checklist("Städa");
+const fourthcheck = new Checklist("Gå ut med hunden");
+const fifthcheck = new Checklist("Tvätta");
+
+let todoList = [firstcheck, secondcheck, thirdcheck, fourthcheck, fifthcheck];
+
+const bigcontainer = document.getElementById("list");
+
+function removeTodo(indexPos) {
+  const newArray = todoList.splice(indexPos, 1);
+  localStorage.setItem("Items", JSON.stringify(todoList));
+  forLoop(todoList);
+}
+
+function forLoop(todoList) {
+  container.innerHTML = "";
   for (let i = 0; i < todoList.length; i++) {
     const listItem = document.createElement("li");
+    console.log("Todolistinsideloop", todoList[i]);
     const buttonContainer = document.createElement("div");
     const checkButton = document.createElement("button");
     const trashButton = document.createElement("button");
 
-    listItem.className = "list";
+    listItem.className = "list completed";
     listItem.innerHTML = todoList[i].checklistName;
 
     checkButton.className = "list__check";
     trashButton.className = "list__trash";
 
-    trashButton.addEventListener("click", () => {
-      const parent = buttonContainer.parentElement;
-      parent.parentElement.removeChild(parent);
-    });
+    trashButton.addEventListener("click", () => removeTodo(i));
 
-    // trashButton.addEventListener("click", () => {
-    //   listItem.innerHTML =
-    // }
+    checkButton.addEventListener("click", () => {
+      if ((todoList[i].done = true)) {
+        listItem.classList.add("completed");
+      }
+    });
 
     const trashElement = document.createElement("i");
     trashElement.classList.add("bi");
@@ -43,22 +60,11 @@ function forLoop() {
     buttonContainer.appendChild(checkButton);
     buttonContainer.appendChild(trashButton);
   }
+  bigcontainer.appendChild(container);
 }
-
-const firstcheck = new Checklist("Träna");
-const secondcheck = new Checklist("Skriva uppsats");
-const thirdcheck = new Checklist("Städa");
-const fourthcheck = new Checklist("Gå ut med hunden");
-const fifthcheck = new Checklist("Tvätta");
-
-const todoList = [firstcheck, secondcheck, thirdcheck, fourthcheck, fifthcheck];
-
-const bigcontainer = document.getElementById("list");
 
 const container = document.createElement("ul");
 container.className = "container";
-
-forLoop();
 
 bigcontainer.append(container);
 
@@ -71,14 +77,16 @@ function addTodo(event) {
   const newInput = document.getElementById("todoInput").value;
   const newItem = new Checklist(newInput);
   todoList.push(newItem);
-
-  forLoop();
+  localStorage.setItem("Items", JSON.stringify(todoList));
+  forLoop(todoList);
 
   event.preventDefault();
 }
-bigcontainer.appendChild(container);
 
-let newItemsfromList = localStorage.getItem("itemlist");
-
-localStorage.setItem("savedItems", JSON.stringify(listItem));
-localStorage.setItem("itemlist", JSON.stringify(todoList));
+window.addEventListener("load", () => {
+  const newList = JSON.parse(localStorage.getItem("Items"));
+  if (newList) {
+    todoList = newList;
+  }
+  forLoop(todoList);
+});

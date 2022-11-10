@@ -47,6 +47,10 @@ body {
   }
 }
 
+.completed {
+  text-decoration: line-through;
+}
+
 .header {
   display: block;
   text-align: center;
