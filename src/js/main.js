@@ -1,10 +1,12 @@
+import { Checklist } from "./models/checklist";
+
 // KLASSER
-class Checklist {
-  constructor(checklistName) {
-    this.checklistName = checklistName;
-    this.done = false;
-  }
-}
+// class Checklist {
+//   constructor(checklistName) {
+//     this.checklistName = checklistName;
+//     this.done = false;
+//   }
+// }
 
 const firstcheck = new Checklist("Träna");
 const secondcheck = new Checklist("Skriva uppsats");
@@ -39,10 +41,10 @@ function forLoop(todoList) {
 
     trashButton.addEventListener("click", () => removeTodo(i));
 
+    listItem.classList.toggle("completed");
     checkButton.addEventListener("click", () => {
-      if ((todoList[i].done = true)) {
-        listItem.classList.add("completed");
-      }
+      todoList[i].done = true;
+      listItem.classList.toggle("completed");
     });
 
     const trashElement = document.createElement("i");
@@ -73,7 +75,6 @@ todoButton.addEventListener("click", addTodo);
 
 function addTodo(event) {
   container.innerHTML = "";
-
   const newInput = document.getElementById("todoInput").value;
   const newItem = new Checklist(newInput);
   todoList.push(newItem);
