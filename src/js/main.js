@@ -1,13 +1,5 @@
 import { Checklist } from "./models/checklist";
 
-// KLASSER
-// class Checklist {
-//   constructor(checklistName) {
-//     this.checklistName = checklistName;
-//     this.done = false;
-//   }
-// }
-
 const firstcheck = new Checklist("Träna");
 const secondcheck = new Checklist("Skriva uppsats");
 const thirdcheck = new Checklist("Städa");
@@ -18,17 +10,22 @@ let todoList = [firstcheck, secondcheck, thirdcheck, fourthcheck, fifthcheck];
 
 const bigcontainer = document.getElementById("list");
 
-function removeTodo(indexPos) {
-  const newArray = todoList.splice(indexPos, 1);
+const container = document.createElement("ul");
+container.className = "container";
+
+bigcontainer.append(container);
+
+function removeTodo(i) {
+  todoList.splice(i, 1);
   localStorage.setItem("Items", JSON.stringify(todoList));
   forLoop(todoList);
 }
 
 function forLoop(todoList) {
   container.innerHTML = "";
+
   for (let i = 0; i < todoList.length; i++) {
     const listItem = document.createElement("li");
-    console.log("Todolistinsideloop", todoList[i]);
     const buttonContainer = document.createElement("div");
     const checkButton = document.createElement("button");
     const trashButton = document.createElement("button");
@@ -62,13 +59,7 @@ function forLoop(todoList) {
     buttonContainer.appendChild(checkButton);
     buttonContainer.appendChild(trashButton);
   }
-  bigcontainer.appendChild(container);
 }
-
-const container = document.createElement("ul");
-container.className = "container";
-
-bigcontainer.append(container);
 
 const todoButton = document.getElementById("todoButton");
 todoButton.addEventListener("click", addTodo);
@@ -86,6 +77,7 @@ function addTodo(event) {
 
 window.addEventListener("load", () => {
   const newList = JSON.parse(localStorage.getItem("Items"));
+
   if (newList) {
     todoList = newList;
   }
